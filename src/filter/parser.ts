@@ -26,7 +26,7 @@ export class FilterParser {
     var f = filter.filter
         if (typeof f == "string") {
             try {
-                f = JSON.parse(filter.filter)
+                f = JSON.parse(f)
             } catch (e) {
                 console.log('JSON.parse() e', e)
             }
