@@ -23,14 +23,15 @@ export class FilterParser {
   constructor(private collectionPropsClass: typeof CollectionProperties) {}
 
   parse(filter: CollectionDto): FilterableParameters {
-    if (typeof filter.filter == "string") {
-        try {
-            filter.filter = JSON.parse(filter.filter)
-        } catch (e) {
+    var f = filter.filter
+        if (typeof f == "string") {
+            try {
+                f = JSON.parse(filter.filter)
+            } catch (e) {
                 console.log('JSON.parse() e', e)
+            }
         }
-    }
-    const fltr = this.transform(filter.filter);
+    const fltr = this.transform(f);
 
     if (fltr === undefined || fltr === null || Object.keys(fltr).length === 0) {
       return {};
